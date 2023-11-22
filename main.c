@@ -37,7 +37,6 @@ int main(int arg_count, char **arg_vector)
 		}
 		inf->_readfd = fd;
 	}
-	envlist_populate(inf);
 	read_existing(inf);
 	shell_loop(inf, arg_vector);
 	return (EXIT_SUCCESS);
