@@ -2,62 +2,62 @@
 
 /**
  * list_add_node - a function that adds a node to the start of the list
- * @h: address of pointer to the head node
- * @s: str field of node
- * @n: node index used by history
+ * @head: address of pointer to the head node
+ * @str: str field of node
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *list_add_node(list_t **h, const char *s, int n)
+list_t *list_add_node(list_t **head, const char *str, int num)
 {
 	list_t *new;
 
-	if (!h)
+	if (!head)
 		return (NULL);
 	new = malloc(sizeof(list_t));
 	if (!new)
 		return (NULL);
 	mem_set_((void *)new, 0, sizeof(list_t));
-	new->n = n;
-	if (s)
+	new->num = num;
+	if (str)
 	{
-		new->s = dup_string(s);
-		if (!new->s)
+		new->str = dup_string(str);
+		if (!new->str)
 		{
 			free(new);
 			return (NULL);
 		}
 	}
-	new->next = *h;
-	*h = new;
+	new->next = *head;
+	*head = new;
 	return (new);
 }
 
 /**
  * node_end - a function that adds a node to the end of the list
- * @h: address of pointer to head node
- * @s: str field of node
- * @n: node index used by history
+ * @head: address of pointer to head node
+ * @str: str field of node
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *node_end(list_t **h, const char *s, int n)
+list_t *node_end(list_t **head, const char *str, int num)
 {
 	list_t *new, *i;
 
-	if (!h)
+	if (!head)
 		return (NULL);
 
-	i = *h;
+	i = *head;
 	new = malloc(sizeof(list_t));
 	if (!new)
 		return (NULL);
 	mem_set_((void *)new, 0, sizeof(list_t));
-	new->n = n;
-	if (s)
+	new->num = num;
+	if (str)
 	{
-		new->s = dup_string(s);
-		if (!new->s)
+		new->str = dup_string(str);
+		if (!new->str)
 		{
 			free(new);
 			return (NULL);
@@ -70,7 +70,8 @@ list_t *node_end(list_t **h, const char *s, int n)
 		i->next = new;
 	}
 	else
-		*h = new;
+		*head = new;
+
 	return (new);
 }
 

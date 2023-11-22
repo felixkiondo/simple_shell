@@ -36,47 +36,18 @@ int shell_exit(inf_t *inf)
  */
 int shell_cd(inf_t *inf)
 {
-	char *s, *d, buff[1024];
-	int c;
+	char *s, buff[1024];
 
 	s = getcwd(buff, 1024);
 	if (!s)
 		put_string("Error: Unable to retrieve current working directory.\n");
+
 	if (!inf->argv[1])
-	{
-		d = get_env(inf, "HOME=");
-		if (!d)
-		{
-			put_string("Error: HOME environment variable not set.\n");
-			c = chdir((d = get_env(inf, "PWD=")) ? d : "/");
-		}
-		else
-			c = chdir(d);
-	}
+		handlehome_dir(inf, buff);
 	else if (str_compare(inf->argv[1], "-") == 0)
-	{
-		if (!get_env(inf, "OLDPWD="))
-		{
-			put_string(s);
-			_putchar('\n');
-			return (1);
-		}
-		put_string(get_env(inf, "OLDPWD=")), _putchar('\n');
-		c = chdir((d = get_env(inf, "OLDPWD=")) ? d : "/");
-	}
+		handle_oldPWD(inf);
 	else
-		c = chdir(inf->argv[1]);
-	if (c == -1)
-	{
-		_print_error(inf, "unable to cd to ");
-		input_string(inf->argv[1]);
-		error_putchar('\n');
-	}
-	else
-	{
-		set_env(inf, "OLDPWD", get_env(inf, "PWD="));
-		set_env(inf, "PWD", getcwd(buff, 1024));
-	}
+		handle_specificdir(inf, inf->argv[1]);
 
 	return (0);
 }

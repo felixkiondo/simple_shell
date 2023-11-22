@@ -73,20 +73,3 @@ int myunset_env(inf_t *inf)
 
 	return (0);
 }
-
-/**
- * envlist_populate - a function that populates env linked list
- * @inf: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
- */
-int envlist_populate(inf_t *inf)
-{
-	list_t *n = NULL;
-	size_t j;
-
-	for (j = 0; mode_environ[j]; j++)
-		node_end(&n, mode_environ[j], 0);
-	inf->link_env = n;
-	return (0);
-}

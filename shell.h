@@ -153,8 +153,8 @@ size_t list_print(const list_t *head);
 list_t *begin_node(list_t *n, char *pref, char ch);
 ssize_t index_node(list_t *h, list_t *n);
 
-list_t *list_add_node(list_t **h, const char *s, int n);
-list_t *node_end(list_t **h, const char *s, int n);
+list_t *list_add_node(list_t **head, const char *str, int num);
+list_t *node_end(list_t **head, const char *str, int num);
 size_t _printlist(const list_t *head);
 int delete_node(list_t **h, unsigned int i);
 void free_list(list_t **h_ptr);
@@ -214,5 +214,10 @@ int interactive_mode(inf_t *inf);
 int char_delim(char ch, char *d);
 int check_alpha(int ch);
 int convert_string_to_int(char *str);
+
+void handlehome_dir(inf_t *inf, char *buff);
+void handle_oldPWD(inf_t *inf);
+void handle_specificdir(inf_t *inf, char *dir);
+int ch_currentdir(inf_t *inf);
 
 #endif

@@ -24,7 +24,7 @@ void set_struct(inf_t *inf, char **v)
 	inf->file_name = v[0];
 	if (inf->arg)
 	{
-		inf->argv = strto_two(inf->arg, " \t");
+		inf->argv = strwords(inf->arg, " \t");
 		if (!inf->argv)
 		{
 
