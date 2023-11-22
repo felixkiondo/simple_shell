@@ -38,7 +38,7 @@ int test_delim(inf_t *inf, char *buffer, size_t *k)
 /**
  * chain_check - function to checks we should continue
  *               chaining based on last status
- * @f: the parameter struct
+ * @inf: the parameter struct
  * @buffer: the char buffer
  * @a: address of current position in buf
  * @c: starting position in buffer
@@ -46,21 +46,21 @@ int test_delim(inf_t *inf, char *buffer, size_t *k)
  *
  * Return: Void
  */
-void chain_check(inf_t *f, char *buffer, size_t *a, size_t c, size_t l)
+void chain_check(inf_t *inf, char *buffer, size_t *a, size_t c, size_t l)
 {
 	size_t b = *a;
 
-	if (f->cmd_buffer_type == CMD_AND)
+	if (inf->cmd_buffer_type == CMD_AND)
 	{
-		if (f->exec_status)
+		if (inf->exec_status)
 		{
 			buffer[c] = 0;
 			b = l;
 		}
 	}
-	if (f->cmd_buffer_type == CMD_OR)
+	if (inf->cmd_buffer_type == CMD_OR)
 	{
-		if (!f->exec_status)
+		if (!inf->exec_status)
 		{
 			buffer[c] = 0;
 			b = l;
@@ -72,11 +72,11 @@ void chain_check(inf_t *f, char *buffer, size_t *a, size_t c, size_t l)
 
 /**
  * alias_rep - function that replaces an aliases in the tokenized string
- * @i: the parameter struct
+ * @inf: the parameter struct
  *
  * Return: 1 if replaced, 0 otherwise
  */
-int alias_rep(inf_t *i)
+int alias_rep(inf_t *inf)
 {
 	int j;
 	list_t *n;
@@ -84,17 +84,17 @@ int alias_rep(inf_t *i)
 
 	for (j = 0; j < 10; j++)
 	{
-		n = begin_node(i->node_alias, i->argv[0], '=');
+		n = begin_node(inf->node_alias, inf->argv[0], '=');
 		if (!n)
 			return (0);
-		free(i->argv[0]);
+		free(inf->argv[0]);
 		c = str_char(n->str, '=');
 		if (!c)
 			return (0);
 		c = dup_string(c + 1);
 		if (!c)
 			return (0);
-		i->argv[0] = c;
+		inf->argv[0] = c;
 	}
 	return (1);
 }
