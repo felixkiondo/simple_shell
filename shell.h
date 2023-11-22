@@ -111,21 +111,16 @@ typedef struct builtin
 } builtin_table;
 
 
-char **strto_two(char *string, char delim);
 char **strwords(char *s, char *delim);
-
-
-
+char **strto_two(char *string, char delim);
 char *_strcopy(char *dst, char *source);
 char *dup_string(const char *string);
 void put_string(char *string);
 int _putchar(char ch);
-
 int string_len(char *str);
 int str_compare(char *str1, char *str2);
 char *haystack_check(const char *hay_string, const char *n);
 char *string_cat(char *d, char *source);
-
 int shell_loop(inf_t *inf, char **v);
 int find_builtin_cmd(inf_t *inf);
 void find_command(inf_t *inf);
@@ -135,89 +130,72 @@ void chain_check(inf_t *f, char *buffer, size_t *a, size_t c, size_t l);
 int alias_rep(inf_t *i);
 int vars_rep(inf_t *inf);
 int string_rep(char **o, char *n);
-
 char *mem_set_(char *q, char t, unsigned int num);
 void free_strings(char **ss);
 void *realloc_mem(void *t, unsigned int o, unsigned int n);
-
 int check_cmd(inf_t *inf, char *p);
 char *char_dup(char *str_path, int s, int p);
 char *find_command_path(inf_t *inf, char *str_path, char *c);
-
 int free_pointer(void **p);
 int main(int arg_count, char **arg_vector);
-
 size_t linklist_len(const list_t *ptr);
 char **list_array(list_t *h);
 size_t list_print(const list_t *head);
 list_t *begin_node(list_t *n, char *pref, char ch);
 ssize_t index_node(list_t *h, list_t *n);
-
-list_t *list_add_node(list_t **head, const char *str, int num);
-list_t *node_end(list_t **head, const char *str, int num);
+list_t *list_add_node(list_t **h, const char *s, int n);
+list_t *node_end(list_t **h, const char *s, int n);
 size_t _printlist(const list_t *head);
 int delete_node(list_t **h, unsigned int i);
 void free_list(list_t **h_ptr);
-
 char *history_file(inf_t *inf);
 int write_existing(inf_t *inf);
 int read_existing(inf_t *inf);
 int add_history_list(inf_t *inf, char *buffer, int count);
 int history_renumber(inf_t *inf);
-
 ssize_t buf_command(inf_t *inf, char **buffer, size_t *l);
 ssize_t minus_line(inf_t *inf);
 ssize_t read_buffer(inf_t *inf, char *buffer, size_t *j);
 int get_line(inf_t *inf, char **pt, size_t *len);
 void block_copy(__attribute__((unused))int num_signal);
-
 void initialize_struct(inf_t *inf);
 void set_struct(inf_t *inf, char **v);
 void free_struct(inf_t *inf, int a_ll);
-
 char **_get_environ(inf_t *inf);
 int unset_env(inf_t *inf, char *v);
 int set_env(inf_t *inf, char *v, char *val);
-
 char *_strncopy(char *d, char *s, int num);
 char *str_cat(char *d, char *source, int num);
 char *str_char(char *str, char ch);
-
 int str_int(char *str);
 void _print_error(inf_t *inf, char *str);
 int print_dec(int p, int fd);
 char *convertnum_function(long int n, int b, int flags);
 void comments_remover(char *buffer);
-
 void input_string(char *string);
 int error_putchar(char ch);
 int put_fd(char ch, int fd);
 int puts_fd(char *string, int fd);
-
 int print_env(inf_t *inf);
 char *get_env(inf_t *inf, const char *m);
 int myset_env(inf_t *inf);
 int myunset_env(inf_t *inf);
 int envlist_populate(inf_t *inf);
-
 int shell_history(inf_t *inf);
 int alias_string(inf_t *inf, char *s);
 int setstring_alias(inf_t *inf, char *s);
 int _printalias(list_t *n);
 int shell_alias(inf_t *inf);
-
 int shell_exit(inf_t *inf);
 int shell_cd(inf_t *inf);
 int _myhelp(inf_t *inf);
-
 int interactive_mode(inf_t *inf);
 int char_delim(char ch, char *d);
 int check_alpha(int ch);
 int convert_string_to_int(char *str);
-
 void handlehome_dir(inf_t *inf, char *buff);
 void handle_oldPWD(inf_t *inf);
 void handle_specificdir(inf_t *inf, char *dir);
 int ch_currentdir(inf_t *inf);
 
-#endif
+#endif /* SHELL_H */
