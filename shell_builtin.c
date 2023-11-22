@@ -55,7 +55,7 @@ int setstring_alias(inf_t *inf, char *s)
 		return (alias_string(inf, s));
 
 	alias_string(inf, s);
-	
+
 	return (node_end(&(inf->node_alias), s, 0) == NULL);
 }
 

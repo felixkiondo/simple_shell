@@ -37,7 +37,7 @@ char *dup_string(const char *string)
 		return (NULL);
 	while (*string++)
 		len++;
-	len = malloc(sizeof(char) * (len + 1));
+	s = malloc(sizeof(char) * (len + 1));
 	if (!len)
 		return (NULL);
 	for (len++; len--;)
